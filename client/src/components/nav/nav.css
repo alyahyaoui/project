@@ -1,4 +1,4 @@
-.nav{
-    margin:"0%";
-    position: "fixed"
+.navbar {
+  padding: 1.5rem 1rem !important ;
+  background-color: transparent !important ;
 }

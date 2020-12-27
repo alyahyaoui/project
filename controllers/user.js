@@ -127,3 +127,52 @@ exports.current = (req, res) => {
 exports.logout = (req, res) => {
     res.status(200).send({ user: req.logout() });
   };
+
+  //Get all user 
+
+exports.getusers = async (req, res) => {
+  try {
+    let result = await User.find();
+    res.status(200).send({ response: result, message: "Getting users successfully" });
+  } catch (error) {
+    res.status(500).send({ message: "les utilisateurs nont pas etait afficher" });
+  }
+};
+
+// get user by id
+
+exports.getuserById=async (req, res) => {
+  try {
+    const result = await user.findById( req.params.id );
+    res.status(200).send({
+      response: result,
+      message: "Got the desired user successfullY !",
+    });
+  } catch (e) {
+    res.status(500).send({ message: "there is no user with this id !" });
+  }
+}
+
+//delete user by id
+
+exports.deleteuser = async (req, res) => {
+  try {
+    let result = await user.deleteOne({ _id: req.params.id });
+   result.d? res.status(200).send({ response: result, message: "votre utilisateur a etait supprimer" }):
+   res.status(500).send({ message: "il y a pas d'utilisateur avec cette id" });
+  } catch (error) {
+    res.status(500).send({ message: "il y a pas de id" });
+  }
+};
+
+//Update a user by id
+exports.updateUser=async (req, res) => {
+  try {
+    const result = await user.updateOne({ _id: req.params.id },{$set:{...req.body}});
+    result.dModified? res.status(200).send({
+      message: "Updated the desired user successfully !",
+    }):res.send({message:"The user is already updated !"});
+  } catch (e) {
+    res.status(500).send({ message: "there is no user with this id !" });
+  }
+}

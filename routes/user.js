@@ -43,4 +43,30 @@ router.get("/current", isAuth(), controllers.current);
 // @Params  Body
 // logout
 router.get("/logout", controllers.logout);
+
+//@method GET
+//@desc GET ALL USER
+// @PATH  http://localhost:5000/user/ListeUser
+// get all users
+router.get("/ListeUser", controllers.getusers );
+
+//@method GET
+//@desc GET USER
+// @PATH  http://localhost:5000/user/Profile/:id
+// get user by id
+router.get("/Profile/:id", controllers.getuserById);
+
+//@method DELETE
+//@desc DELETE USER 
+// @PATH  http://localhost:5000/user/:id
+// @Params  id
+// delete user
+router.delete("/:id ", controllers.deleteUser );
+
+//Method PUT
+//update a user by id
+//Path :http://localhost:5000/Profile/user/:id
+//params id and body
+router.put("/Profile/:id", controllers.updateUser);
+
 module.exports = router;

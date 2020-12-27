@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  justify-content: center;
 }
 
 .err{
@@ -11,3 +12,12 @@
   
 }
 
+/* div .home{
+display: flex;
+justify-content: space-around;
+flex-wrap: wrap;
+}
+.nave{
+  margin-left:25%;
+  margin-bottom: 5%;
+} */

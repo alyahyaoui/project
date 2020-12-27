@@ -5,6 +5,10 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
   CURRENT_USER,
+  GET_ALL_USER,
+  GET_USER,
+  DELETE_USER,
+  EDIT_USER,
 } from "../const/user";
 import axios from "axios";
 
@@ -15,10 +19,10 @@ export const registerUser = (user, history) => async (dispatch) => {
     dispatch({ type: REGISTER_USER, payload: result.data });
     history.push("/dashbord");
   } catch (error) {
-    const {errors} = error.response.data;
-if (Array.isArray(errors)){
-  errors.forEach((err) => alert(err.msg));
-}
+    const { errors } = error.response.data;
+    if (Array.isArray(errors)) {
+      errors.forEach((err) => alert(err.msg));
+    }
     //dispatch({ type: FAIL_USER, payload: error.response.data });
   }
 };
@@ -30,12 +34,14 @@ export const loginUser = (user, history) => async (dispatch) => {
     dispatch({ type: LOGIN_USER, payload: result.data });
     history.push("/dashbord");
   } catch (error) {
-const {errors,msg} = error.response.data;
-if (Array.isArray(errors)){
-  errors.forEach((err) => alert(err.msg));
-}
-if (msg){alert(msg);}
-   // dispatch({ type: FAIL_USER, payload: error.response.data });
+    const { errors, msg } = error.response.data;
+    if (Array.isArray(errors)) {
+      errors.forEach((err) => alert(err.msg));
+    }
+    if (msg) {
+      alert(msg);
+    }
+    // dispatch({ type: FAIL_USER, payload: error.response.data });
   }
 };
 
@@ -58,4 +64,49 @@ export const logout = () => {
   return {
     type: LOGOUT_USER,
   };
+};
+
+export const getusers = () => async (dispatch) => {
+  dispatch({ type: LOAD_USER });
+
+  try {
+    let result = await axios.get("/user/ListeUser");
+    dispatch({ type: GET_ALL_USER, payload: result.data.response });
+  } catch (e) {
+    dispatch({ type: FAIL_USER, payload: e.message });
+  }
+};
+
+// get user by id
+
+export const getuser = (id) => async (dispatch) => {
+  try {
+    let result = await axios.get(`/user/Profile/${id}`);
+    dispatch({ type: GET_USER, payload: result.data.response });
+  } catch (e) {
+    dispatch({ type: FAIL_USER, payload: e.message });
+  }
+};
+
+// delete user by id
+
+export const deleteUserById = (id) => async (dispatch) => {
+  try {
+    let result = await axios.deleteOne(`/user/${id}`);
+    dispatch({ type: DELETE_USER, payload: result });
+  } catch (e) {
+    dispatch({ type: FAIL_USER, payload: e.message });
+  }
+};
+
+//Edit an existing pub
+
+export const editUser = (id, user) => async (dispatch) => {
+  try {
+    let result = await axios.put(`/user/${id}`, user);
+    dispatch({ type: EDIT_USER, payload: result.data.message });
+    dispatch(getusers());
+  } catch (e) {
+    dispatch({ type: EDIT_USER, payload: e });
+  }
 };

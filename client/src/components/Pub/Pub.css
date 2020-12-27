@@ -1,3 +1,12 @@
+.all {
+  text-align: center ;
+  display: flex ;
+  justify-Content: space-between ;
+  flex-Direction: row ;
+  flex-Wrap: wrap ;
+}
+
+
 * {
   box-sizing: border-box;
   margin: 0;

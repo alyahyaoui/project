@@ -2,12 +2,31 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerPub } from "../../JS/actions/pub";
+// import FileBase from "react-file-base64";
+// import MultipleFileInput from "./MultipleFileInput"
 import "./AddPub.css";
 const AddPub = () => {
+
   const [titre, setTitre] = useState("");
   const [description, setDescription] = useState("");
   const [prix, setPrix] = useState("");
-  const [photos, setPhotos] = useState("");
+
+  const [photo, setPhoto] = useState(null);
+  const [imgData, setImgData] = useState(null);
+  const onChangePhoto = e => {
+    if (e.target.files[0]) {
+      console.log("picture: ", e.target.files);
+      setPhoto(e.target.files[0]);
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        setImgData(reader.result);
+      });
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+
+
   const dispatch = useDispatch();
 
   return (
@@ -48,7 +67,7 @@ const AddPub = () => {
                     className="form-control"
                     id="bio"
                     rows={3}
-                    defaultValue={"entrer votre Description"}
+                    placeholder="entrer votre Description"
                     onChange={(e) => setDescription(e.target.value)}
                   />
                 </div>
@@ -64,30 +83,37 @@ const AddPub = () => {
                     onChange={(e) => setPrix(e.target.value)}
                   />
                 </div>
-                <div className="group">
+                <div className="register_image">
+                <input id="Pic" type="file" multiple={false} onChange={onChangePhoto} />
+              </div>
+              <div className="previewProfilePic">
+                <img className="playerPic" src={imgData} width="150px" />
+              </div>
+            </div>
+                {/* <div className="group">
                   <label htmlFor="pass" className="label">
-                    Photos
+                    Photo
                   </label>
                 </div>
-                <input
-                  id="fichier"
-                  type="file"
-                  className="form-control-file"
-                  placeholder="entrer votre Photos"
-                  onChange={(e) => setPhotos(e.target.value)}
-                />
+                <div>
+                  <FileBase
+                    type="file"
+                    multiple={true}
+                    onDone={({ base64 }) => setSelectedFile(base64.target.value)}
+                  />
+                </div> */}
                 <div className="group">
                   <input
                     type="submit"
                     className="button"
-                    defaultValue="Sign Up"
+                    defaultValue="register"
                     onClick={() =>
                       dispatch(
                         registerPub({
                           titre,
                           description,
                           prix,
-                          
+                          photo
                         })
                       )
                     }
@@ -98,7 +124,6 @@ const AddPub = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

@@ -1,9 +1,11 @@
 import React from "react";
-import Pub from "../../components/Pub/Pub"
-const Home = () => {
+import PubList from "../../components/PubList";
+import Filter from "../../components/Filter";
+const Home = ({ searched, setSearched,loadpub,pubs }) => {
   return (
     <div>
-      <Pub/>
+      <Filter setSearched={setSearched} loadpub={loadpub}/>
+      <PubList  pubs={pubs} searched={searched} />
     </div>
   );
 };
