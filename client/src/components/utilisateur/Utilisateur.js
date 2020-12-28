@@ -4,26 +4,26 @@ import "./Utilisateur.css"
 
 
 const Utilisateur = ({user}) => {
-
+  // const user = users.find((el) => match.params.id === el.id);
   return (
     <div>
-      <div class="container emp-profile">
+      <div className="container emp-profile">
         <form method="post">
           <div className="row" style={{marginTop : 25}}>
-            <div class="col-md-4">
-              <div class="profile-img">
+            <div className="col-md-4">
+              <div className="profile-img">
                 <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt="avatar" />
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="profile-head">
+            <div className="col-md-6">
+              <div className="profile-head">
                 <h5>{user.nom}</h5>
                 <h6>{user.role}</h6>
 
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul className="nav nav-tabs" id="myTab" role="tablist">
                   
                     <a
-                      class="nav-link active"
+                      className="nav-link active"
                       id="home-tab"
                       data-toggle="tab"
                       href="#home"
@@ -37,69 +37,69 @@ const Utilisateur = ({user}) => {
                 </ul>
               </div>
             </div>
-            <div class="col-md-2">
+            <div className="col-md-2">
               <input
                 type="submit"
-                class="profile-edit-btn"
+                className="profile-edit-btn"
                 name="btnAddMore"
                 value="Edit Profile"
               />
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-8">
-              <div class="tab-content profile-tab" id="myTabContent">
+          <div className="row">
+            <div className="col-md-8">
+              <div className="tab-content profile-tab" id="myTabContent">
                 <div
-                  class="tab-pane fade show active"
+                  className="tab-pane fade show active"
                   id="home"
                   role="tabpanel"
                   aria-labelledby="home-tab"
                 >
-                  <div class="row">
-                    <div class="col-md-6">
+                  <div className="row">
+                    <div className="col-md-6">
                       <label>Nom</label>
                     </div>
-                    <div class="col-md-6">
+                    <div className="col-md-6">
                       <p> {user.nom}</p>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
+                  <div className="row">
+                    <div className="col-md-6">
                       <label>Prenom</label>
                     </div>
-                    <div class="col-md-6">
+                    <div className="col-md-6">
                       <p> {user.prenom}</p>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
+                  <div className="row">
+                    <div className="col-md-6">
                       <label>Email</label>
                     </div>
-                    <div class="col-md-6">
+                    <div className="col-md-6">
                       <p> {user.email}</p>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
+                  <div className="row">
+                    <div className="col-md-6">
                       <label>Numero</label>
                     </div>
-                    <div class="col-md-6">
+                    <div className="col-md-6">
                       <p>{user.numero}</p>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
+                  <div className="row">
+                    <div className="col-md-6">
                       <label>Adresse</label>
                     </div>
-                    <div class="col-md-6">
+                    <div className="col-md-6">
                       <p>{user.adresse}</p>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
+                  <div className="row">
+                    <div className="col-md-6">
                       <label>CIN</label>
                     </div>
-                    <div class="col-md-6">
+                    <div className="col-md-6">
                       <p> {user.cin}</p>
                     </div>
                   </div>

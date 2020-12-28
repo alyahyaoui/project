@@ -62,9 +62,10 @@ exports.getsearchPub = async (req, res) => {
 
 //delete pub by id
 exports.deletePub = async (req, res) => {
+
   try {
     let result = await Pub.deleteOne({ _id: req.params.id });
-   result.d? res.status(200).send({ response: result, message: "votre pub a etait supprimer" }):
+   result ? res.status(200).send({ response: result, message: "votre pub a etait supprimer" }):
    res.status(500).send({ message: "il y a pas de pub avec cette id" });
   } catch (error) {
     res.status(500).send({ message: "il y a pas de id" });

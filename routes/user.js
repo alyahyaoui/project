@@ -52,16 +52,16 @@ router.get("/ListeUser", controllers.getusers );
 
 //@method GET
 //@desc GET USER
-// @PATH  http://localhost:5000/user/Profile/:id
+// @PATH  http://localhost:5000/user/:id
 // get user by id
-router.get("/Profile/:id", controllers.getuserById);
+router.get("/:id", controllers.getuserById);
 
 //@method DELETE
 //@desc DELETE USER 
 // @PATH  http://localhost:5000/user/:id
 // @Params  id
 // delete user
-router.delete("/:id ", controllers.deleteUser );
+router.delete("/:id", controllers.deleteuser );
 
 //Method PUT
 //update a user by id

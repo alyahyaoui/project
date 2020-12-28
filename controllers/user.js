@@ -143,7 +143,7 @@ exports.getusers = async (req, res) => {
 
 exports.getuserById=async (req, res) => {
   try {
-    const result = await user.findById( req.params.id );
+    let result = await User.findById( req.params.id );
     res.status(200).send({
       response: result,
       message: "Got the desired user successfullY !",
@@ -157,9 +157,9 @@ exports.getuserById=async (req, res) => {
 
 exports.deleteuser = async (req, res) => {
   try {
-    let result = await user.deleteOne({ _id: req.params.id });
-   result.d? res.status(200).send({ response: result, message: "votre utilisateur a etait supprimer" }):
-   res.status(500).send({ message: "il y a pas d'utilisateur avec cette id" });
+    let result = await User.deleteOne({ _id: req.params.id });
+   result ? res.status(200).send({ response: result, message: "votre user a etait supprimer" }):
+   res.status(500).send({ message: "il y a pas de user avec cette id" });
   } catch (error) {
     res.status(500).send({ message: "il y a pas de id" });
   }
@@ -168,7 +168,7 @@ exports.deleteuser = async (req, res) => {
 //Update a user by id
 exports.updateUser=async (req, res) => {
   try {
-    const result = await user.updateOne({ _id: req.params.id },{$set:{...req.body}});
+    const result = await User.updateOne({ _id: req.params.id },{$set:{...req.body}});
     result.dModified? res.status(200).send({
       message: "Updated the desired user successfully !",
     }):res.send({message:"The user is already updated !"});

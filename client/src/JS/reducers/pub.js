@@ -36,7 +36,7 @@ export const pubReducer = (state = initiState, { type, payload }) => {
       return { ...state, loadpub: false, pubs: payload };
 
     case FILTER_PUB:
-      return { ...state, loadpub: false, pubs: payload };
+      return { ...state, loadpub: false, searched: payload };
 
     case DELETE_PUB:
       return { ...state, loadpub: false };

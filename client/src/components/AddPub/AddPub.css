@@ -1,17 +1,20 @@
 body {
   display: flex;
   justify-content: center;
-  margin: 0% 0% 5% 0%;
+  margin: 0% 0% 7% 0%;
   color: #3f52bf !important ;
   background: #f094dc85;
   font: 600 16px/18px "Open Sans", sans-serif;
 }
 
+.total{
+  margin-left: 177px;
+}
 .adding-box {
   width: 100%;
   margin: auto;
   max-width: 525px;
-  min-height: 950px;
+  min-height: 938px;
   position: relative;
   background: url(https://image.freepik.com/photos-gratuite/cabane-brune-foret_249578-1721.jpg);
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
@@ -47,7 +50,7 @@ body {
   margin-right: 15px;
   margin-top: 30px;
   padding-bottom: 5px;
-  margin: 0 15px 10px 0;
+  margin: 26px 15px 33px 0;
   display: inline-block;
   border-bottom: 2px solid transparent;
 }
@@ -85,6 +88,9 @@ div .group .input,
   background: rgba(14, 13, 13, 0.349);
 }
 
+.button{
+  margin-top: 20px;
+}
 .adding-space .group .label {
   color: rgb(247, 80, 3);
   font-size: 15px;

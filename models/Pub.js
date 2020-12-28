@@ -17,11 +17,11 @@ const PubSchema = new Schema({
     type: String,
   },
   photo: {
-    type: File,
+    type: String,
   },
   date: {
     type: Date,
-    default: Date.getMonth(),
+    default: Date.now ,
   },
 });
 

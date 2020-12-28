@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { Button, FormControl, Nav, Navbar, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./nav.css";
@@ -7,8 +7,10 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {filterPub} from "../../JS/actions/pub"
 const Nave = () => {
+  const [searched, setSearched] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
+  console.log(searched)
   return (
     <div className="all">
       <Navbar className="navbar" bg="light" variant="light" >
@@ -27,9 +29,14 @@ const Nave = () => {
           </Nav.Link>
         </Nav>
         <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-primary" onClick={() => {
-              dispatch(filterPub); }}>Search for a pub</Button>
+          <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={(e) => {
+            e.target.value === ""
+              ? setSearched("")
+              : setSearched(e.target.value);
+          }}/>
+          <Button variant="outline-primary"  type="submit"
+          className="button" onClick={() => {
+              dispatch(filterPub({searched})); }}>Search for a pub</Button>
         </Form>
       </Navbar>
     </div>

@@ -7,7 +7,7 @@ const SingelPub = ({match,pubs}) => {
         <div>
             <div className="singleC">
       <Card className="Card" style={{ width: "30%", margin: "2%" }}>
-        <Card.Img className="CardIm" variant="top" src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" />
+        <Card.Img className="CardIm" variant="top" src={singlePub.photo} />
         <Card.Body>
           <Card.Title>{singlePub.titre}</Card.Title>
           <Card.Text>{singlePub.description}</Card.Text>

@@ -11,24 +11,28 @@ import AboutUs from "./components/pages/AboutUs";
 import Error from "./components/pages/Error";
 import AddPub from "./components/AddPub/AddPub";
 import Home from "./components/pages/Home";
+import ListeUser from "./components/ListeUser";
 import Utilisateur from "./components/utilisateur/Utilisateur";
 import { getusers } from "./JS/actions/user";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
-  const [searched, setSearched] = useState("");
+  const user = useSelector((state) => state.userReducer.user);
   const users = useSelector((state) => state.userReducer.users);
+  const loadUser = useSelector((state) => state.userReducer.loadUser);
   const pubs = useSelector((state) => state.pubReducer.pubs);
   const loadpub = useSelector((state) => state.pubReducer.loadpub);
+  const searched = useSelector(state => state.pubReducer.searched)
   useEffect(() => {
     dispatch(getpubs());
-  }, []);
+    dispatch(filterPub());
+  }, [searched]);
   const dispatch = useDispatch();
 
   return (
     <div className="App">
       <div className="nave">
-        <Nave />
+        <Nave searched={searched}  />
       </div>
 
       <div className="home">
@@ -40,20 +44,16 @@ function App() {
               <Home
                 pubs={pubs}
                 loadpub={loadpub}
-                searched={searched}
-                setSearched={setSearched}
               />
             )}
           />
           <Route
             path="/ListeUser"
-            render={() =>
-              users.map((el) => <Utilisateur key={el._id} user={el} />)
-            }
+            render={() => <ListeUser users={users} loadUser={loadUser} />}
           />
           <Route
             path="/Profile"
-            render={(el) => <Utilisateur key={el._id} user={el._id} />}
+            render={(props) => <Utilisateur {...props} users={users} />}
           />
           <Route path="/AboutUs" component={AboutUs} />
           <Route path="/SignUp" component={SignUp} />

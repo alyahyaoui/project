@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerPub } from "../../JS/actions/pub";
+import Files from "../Files/Files"
 // import FileBase from "react-file-base64";
 // import MultipleFileInput from "./MultipleFileInput"
 import "./AddPub.css";
@@ -11,19 +12,19 @@ const AddPub = () => {
   const [description, setDescription] = useState("");
   const [prix, setPrix] = useState("");
 
-  const [photo, setPhoto] = useState(null);
-  const [imgData, setImgData] = useState(null);
-  const onChangePhoto = e => {
-    if (e.target.files[0]) {
-      console.log("picture: ", e.target.files);
-      setPhoto(e.target.files[0]);
-      const reader = new FileReader();
-      reader.addEventListener("load", () => {
-        setImgData(reader.result);
-      });
-      reader.readAsDataURL(e.target.files[0]);
-    }
-  };
+  // const [photo, setPhoto] = useState(null);
+  // // const [imgData, setImgData] = useState(null);
+  // // const onChangePhoto = e => {
+  // //   if (e.target.files[0]) {
+  // //     console.log("picture: ", e.target.files);
+  // //     setPhoto(e.target.files[0]);
+  // //     const reader = new FileReader();
+  // //     reader.addEventListener("load", () => {
+  // //       setImgData(reader.result);
+  // //     });
+  // //     reader.readAsDataURL(e.target.files[0]);
+  // //   }
+  // // };
 
 
 
@@ -31,7 +32,7 @@ const AddPub = () => {
 
   return (
     <div className="row">
-      <div className="col-md-6 mx-auto p-0">
+      <div className="total">
         <div className="card">
           <div className="adding-box">
             <div className="adding-snip">
@@ -83,13 +84,14 @@ const AddPub = () => {
                     onChange={(e) => setPrix(e.target.value)}
                   />
                 </div>
-                <div className="register_image">
+                <Files />
+                {/* <div className="register_image">
                 <input id="Pic" type="file" multiple={false} onChange={onChangePhoto} />
               </div>
               <div className="previewProfilePic">
                 <img className="playerPic" src={imgData} width="150px" />
-              </div>
-            </div>
+              </div> */}
+            </div> 
                 {/* <div className="group">
                   <label htmlFor="pass" className="label">
                     Photo
@@ -113,7 +115,7 @@ const AddPub = () => {
                           titre,
                           description,
                           prix,
-                          photo
+                         
                         })
                       )
                     }

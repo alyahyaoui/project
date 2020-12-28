@@ -81,7 +81,7 @@ export const getusers = () => async (dispatch) => {
 
 export const getuser = (id) => async (dispatch) => {
   try {
-    let result = await axios.get(`/user/Profile/${id}`);
+    let result = await axios.get(`/user/${id}`);
     dispatch({ type: GET_USER, payload: result.data.response });
   } catch (e) {
     dispatch({ type: FAIL_USER, payload: e.message });
@@ -92,7 +92,7 @@ export const getuser = (id) => async (dispatch) => {
 
 export const deleteUserById = (id) => async (dispatch) => {
   try {
-    let result = await axios.deleteOne(`/user/${id}`);
+    let result = await axios.delete(`/user/${id}`);
     dispatch({ type: DELETE_USER, payload: result });
   } catch (e) {
     dispatch({ type: FAIL_USER, payload: e.message });

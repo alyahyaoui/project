@@ -51,7 +51,7 @@ router.get("/:searched ", controllers.getsearchPub );
 // @PATH  http://localhost:5000/pub/:id
 // @Params  id
 // delete pub
-router.delete("/:id ", controllers.deletePub );
+router.delete("/:id", controllers.deletePub );
 
 //Method PUT
 //update a pub by id
