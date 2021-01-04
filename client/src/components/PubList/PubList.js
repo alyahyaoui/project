@@ -1,7 +1,7 @@
 import React from "react";
 import { Spinner } from "react-bootstrap";
 import Pub from "../Pub/Pub";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import "./PubList.css";
 const PubList = () => {

@@ -28,9 +28,9 @@ router.post("/register", pubRules() , validation, controllers.pub);
 
 //@method GET
 //@desc GET ALL PUB 
-// @PATH  http://localhost:5000/pub
+// @PATH  http://localhost:5000/pub/search/:searched
 // get all pubs
-router.get("/search/:searched", controllers.getpubs );
+router.get("/", controllers.getpubs );
 
 //@method GET
 //@desc GET PUB BY ID
@@ -41,10 +41,10 @@ router.get("/:id", controllers.getpubById );
 
 //@method GET
 //@desc GET SEARSHED PUB 
-// @PATH  http://localhost:5000/name/:a?
+// @PATH  http://localhost:5000/titre/:a?
 // @Params  
 // get searshed pub
-// router.get("/titre/:a?", controllers.getAllPub);
+router.get("/titre/:a?", controllers.getAllPub);
 
 //@method DELETE
 //@desc DELETE PUB 

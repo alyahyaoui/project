@@ -31,14 +31,14 @@ exports.pub = async (req, res) => {
 //Get all pub
 
 exports.getpubs = async (req, res) => {
-  searched = req.query.searched
-    ? {
-        name: {
-          $regex: req.query.searched ,
-          $options: "i",
-        },
-      }
-    : {}
+  // searched = req.query.searched
+  //   ? {
+  //       name: {
+  //         $regex: req.query.searched ,
+  //         $options: "i",
+  //       },
+  //     }
+  //   : {};{...searched}
   try {
     let result = await Pub.find();
     res
@@ -65,13 +65,13 @@ exports.getpubById = async (req, res) => {
 };
 
 // Get searshed pub
-// exports.getAllPub = async (req, res) => { let s = req.query.a;  let newTitre = new RegExp(s, "i");
-//  console.log({ s, newTitre });
-//  try {    if (s) {      let result = await Pub.find({        titre: newTitre,      });
-//   res.status(200)({ message: "all pubs", result });      return;    }
-//   let result = await Pub.find();
-//    res.status(200)({ message: "all Pubs", result });  }
-// catch (error) {    res.status(400).send({ message: "failed " });  }};
+exports.getAllPub = async (req, res) => { let s = req.query.a;  let newTitre = new RegExp(s, "i");
+ console.log({ s, newTitre });
+ try {    if (s) {      let result = await Pub.find({        titre: newTitre,      });
+  res.status(200)({ message: "all pubs", result });      return;    }
+  let result = await Pub.find();
+   res.status(200)({ message: "all Pubs", result });  }
+catch (error) {    res.status(400).send({ message: "failed " });  }};
 
 //delete pub by id
 exports.deletePub = async (req, res) => {

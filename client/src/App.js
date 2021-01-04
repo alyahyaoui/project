@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import SignUp from "./components/signUp/SignUp";
 import SingelPub from "./components/pages/SingelPub";
 import PrivateRoute from "./components/routes/PrivateRoute";
@@ -22,18 +22,20 @@ function App() {
   const loadUser = useSelector((state) => state.userReducer.loadUser);
   const pubs = useSelector((state) => state.pubReducer.pubs);
   const loadpub = useSelector((state) => state.pubReducer.loadpub);
-  // const searched = useSelector((state) => state.pubReducer.searched);
+  const searched = useSelector((state) => state.pubReducer.searched);
+  const dispatch = useDispatch();
+  const history = useHistory();
   useEffect(() => {
     dispatch(current());
-    // dispatch(getpubs());
-    // dispatch(filterPub());
-  }, []);
-  const dispatch = useDispatch();
+    dispatch(getpubs());
+    dispatch(filterPub());
+  }, [searched]);
+  
 
   return (
     <div className="App">
       <div className="nave">
-        <Nave  />
+        <Nave history={history} />
       </div>
 
       <div className="home">

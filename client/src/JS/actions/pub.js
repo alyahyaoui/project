@@ -33,25 +33,28 @@ export const getpubById = (id) => async (dispatch) => {
   }
 };
 
-export const getpubs = (searched = '') => async (dispatch) => {
+// searched = ''
+// ?searched=${searched}
+
+export const getpubs = () => async (dispatch) => {
   dispatch({ type: LOAD_PUB });
 
   try {
-    let result = await axios.get(`/pub?searched=${searched}`);
+    let result = await axios.get('/pub');
     dispatch({ type: GET_ALL_PUB, payload: result.data.response });
   } catch (e) {
     dispatch({ type: FAIL_PUB, payload: e.message });
   }
 };
 
-// export const filterPub = (titre) => async (dispatch) => {
-//   try {
-//     let result = await axios.get("/titre/:a?", titre);
-//     dispatch({ type: FILTER_PUB, payload: result.data.response });
-//   } catch (e) {
-//     dispatch({ type: FAIL_PUB, payload: e.message });
-//   }
-// };
+export const filterPub = (titre) => async (dispatch) => {
+  try {
+    let result = await axios.get("/titre/:a?", titre);
+    dispatch({ type: FILTER_PUB, payload: result.data.response });
+  } catch (e) {
+    dispatch({ type: FAIL_PUB, payload: e.message });
+  }
+};
 
 export const deletePubById = (id) => async (dispatch) => {
   try {

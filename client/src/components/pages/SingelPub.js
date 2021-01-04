@@ -9,7 +9,7 @@ const SingelPub = () => {
   const pub = useSelector((state) => state.pubReducer.pub);
   useEffect(() => {
     dispatch(getpubById());
-  }, []);
+  }, [dispatch]);
   console.log(pub);
   return (
     <div>
