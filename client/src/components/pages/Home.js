@@ -1,12 +1,21 @@
 import React from "react";
-import PubList from "../../components/PubList";
-// import Filter from "../../components/Filter";
-const Home = ({ searched, setSearched,loadpub,pubs }) => {
+import PubList from "../PubList/PubList";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { current } from "../../JS/actions/user";
+import {getpubs} from "../../JS/actions/pub"
+
+const Home = ({loadpub,pubs,match }) => {
+  const dispatch = useDispatch()
+  const searched = match.params.searched
+  useEffect(() => {
+    dispatch(current());
+    dispatch(getpubs(searched));
+  }, []);
   return (
     <div>
       <h1>Bienvenue à TuniHotes</h1>
-      <p>blablablablabla</p>
-      {/* <Filter setSearched={setSearched} searched={searched} loadpub={loadpub}/> */}
+      <p>cela est une intro au site</p>
       <PubList  pubs={pubs} loadpub={loadpub} />
     </div>
   );

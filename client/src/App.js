@@ -1,10 +1,9 @@
 import { Switch, Route } from "react-router-dom";
 import SignUp from "./components/signUp/SignUp";
-import dashbord from "./components/dashbord/dashbord";
-import SingelPub from "./components/SingelPub";
+import SingelPub from "./components/pages/SingelPub";
 import PrivateRoute from "./components/routes/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { filterPub, getpubs } from "./JS/actions/pub";
 import Nave from "./components/nav/nav";
 import AboutUs from "./components/pages/AboutUs";
@@ -13,7 +12,8 @@ import AddPub from "./components/AddPub/AddPub";
 import Home from "./components/pages/Home";
 import ListeUser from "./components/ListeUser";
 import Utilisateur from "./components/utilisateur/Utilisateur";
-import { getusers } from "./JS/actions/user";
+import { current } from "./JS/actions/user";
+
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
@@ -22,17 +22,18 @@ function App() {
   const loadUser = useSelector((state) => state.userReducer.loadUser);
   const pubs = useSelector((state) => state.pubReducer.pubs);
   const loadpub = useSelector((state) => state.pubReducer.loadpub);
-  const searched = useSelector(state => state.pubReducer.searched)
+  const searched = useSelector((state) => state.pubReducer.searched);
   useEffect(() => {
+    dispatch(current());
     dispatch(getpubs());
-    dispatch(filterPub());
+    // dispatch(filterPub());
   }, [searched]);
   const dispatch = useDispatch();
 
   return (
     <div className="App">
       <div className="nave">
-        <Nave searched={searched}  />
+        <Nave  />
       </div>
 
       <div className="home">
@@ -40,12 +41,7 @@ function App() {
           <Route
             exact
             path={["/Home", "/"]}
-            render={() => (
-              <Home
-                pubs={pubs}
-                loadpub={loadpub}
-              />
-            )}
+            render={() => <Home pubs={pubs} loadpub={loadpub} />}
           />
           <Route
             path="/ListeUser"
@@ -53,16 +49,15 @@ function App() {
           />
           <Route
             path="/Profile"
-            render={(props) => <Utilisateur {...props} users={users} />}
+            render={() => <Utilisateur user={user} loadUser={loadUser} />}
           />
           <Route path="/AboutUs" component={AboutUs} />
           <Route path="/SignUp" component={SignUp} />
           <Route path="/AddPub" component={AddPub} />
-          <Route
-            path="/SingelPub"
-            render={(props) => <SingelPub {...props} pubs={pubs} />}
-          />
-          <PrivateRoute path="/dashbord" component={dashbord} />
+          <Route path="/SingelPub" component={SingelPub} />
+          {/* <PrivateRoute path="/Home" component={Home} /> */}
+          <Route path="/search/:searched" component={Home} />
+          <PrivateRoute path="/Profile" component={Utilisateur} />
           <Route path="/*" component={Error} />
         </Switch>
       </div>

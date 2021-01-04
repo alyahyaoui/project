@@ -170,8 +170,8 @@ exports.updateUser=async (req, res) => {
   try {
     const result = await User.updateOne({ _id: req.params.id },{$set:{...req.body}});
     result.dModified? res.status(200).send({
-      message: "Updated the desired user successfully !",
-    }):res.send({message:"The user is already updated !"});
+      message: "deja modifier !",
+    }):res.send({message:"Updated the desired user successfully !"});
   } catch (e) {
     res.status(500).send({ message: "there is no user with this id !" });
   }

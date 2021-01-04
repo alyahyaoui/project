@@ -4,7 +4,7 @@ import {
   FAIL_PUB,
   GET_ALL_PUB,
   GET_PUB,
-  FILTER_PUB,
+  // FILTER_PUB,
   DELETE_PUB,
   EDIT_PUB,
 } from "../const/pub";
@@ -14,7 +14,7 @@ const initiState = {
   loadpub: false,
   errors: null,
   pub: {},
-  searched: [],
+  // searched: [],
   isUpdated: "",
 };
 
@@ -35,8 +35,8 @@ export const pubReducer = (state = initiState, { type, payload }) => {
     case GET_ALL_PUB:
       return { ...state, loadpub: false, pubs: payload };
 
-    case FILTER_PUB:
-      return { ...state, loadpub: false, searched: payload };
+    // case FILTER_PUB:
+    //   return { ...state, loadpub: false, searched: payload };
 
     case DELETE_PUB:
       return { ...state, loadpub: false };

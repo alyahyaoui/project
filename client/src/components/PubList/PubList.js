@@ -1,8 +1,11 @@
 import React from "react";
 import { Spinner } from "react-bootstrap";
-import Pub from "../components/Pub/Pub";
-const PubList = ({pubs,loadpub}) => {
-  
+import Pub from "../Pub/Pub";
+import { useSelector } from "react-redux";
+import "./PubList.css";
+const PubList = () => {
+  const loadpub = useSelector((state) => state.pubReducer.loadpub);
+  const pubs = useSelector((state) => state.pubReducer.pubs);
   return (
     <div className="pub">
       {loadpub ? (

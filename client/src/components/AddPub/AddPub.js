@@ -2,12 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerPub } from "../../JS/actions/pub";
-import Files from "../Files/Files"
+import Files from "../Files/Files";
 // import FileBase from "react-file-base64";
 // import MultipleFileInput from "./MultipleFileInput"
 import "./AddPub.css";
 const AddPub = () => {
-
   const [titre, setTitre] = useState("");
   const [description, setDescription] = useState("");
   const [prix, setPrix] = useState("");
@@ -25,8 +24,6 @@ const AddPub = () => {
   // //     reader.readAsDataURL(e.target.files[0]);
   // //   }
   // // };
-
-
 
   const dispatch = useDispatch();
 
@@ -85,25 +82,6 @@ const AddPub = () => {
                   />
                 </div>
                 <Files />
-                {/* <div className="register_image">
-                <input id="Pic" type="file" multiple={false} onChange={onChangePhoto} />
-              </div>
-              <div className="previewProfilePic">
-                <img className="playerPic" src={imgData} width="150px" />
-              </div> */}
-            </div> 
-                {/* <div className="group">
-                  <label htmlFor="pass" className="label">
-                    Photo
-                  </label>
-                </div>
-                <div>
-                  <FileBase
-                    type="file"
-                    multiple={true}
-                    onDone={({ base64 }) => setSelectedFile(base64.target.value)}
-                  />
-                </div> */}
                 <div className="group">
                   <input
                     type="submit"
@@ -115,7 +93,7 @@ const AddPub = () => {
                           titre,
                           description,
                           prix,
-                         
+                          
                         })
                       )
                     }
@@ -126,6 +104,7 @@ const AddPub = () => {
           </div>
         </div>
       </div>
+    </div>
   );
 };
 

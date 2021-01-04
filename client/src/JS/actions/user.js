@@ -17,7 +17,7 @@ export const registerUser = (user, history) => async (dispatch) => {
   try {
     const result = await axios.post("/user/register", user);
     dispatch({ type: REGISTER_USER, payload: result.data });
-    history.push("/dashbord");
+    history.push("/Home");
   } catch (error) {
     const { errors } = error.response.data;
     if (Array.isArray(errors)) {
@@ -32,7 +32,7 @@ export const loginUser = (user, history) => async (dispatch) => {
   try {
     const result = await axios.post("/user/login", user);
     dispatch({ type: LOGIN_USER, payload: result.data });
-    history.push("/dashbord");
+    history.push("/Home");
   } catch (error) {
     const { errors, msg } = error.response.data;
     if (Array.isArray(errors)) {

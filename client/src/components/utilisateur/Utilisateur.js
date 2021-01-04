@@ -1,39 +1,42 @@
 import React from "react";
-import "./Utilisateur.css"
+import "./Utilisateur.css";
+import { useSelector , useDispatch } from "react-redux";
+import { editUser } from "../../JS/actions/user";
 
-
-
-const Utilisateur = ({user}) => {
-  // const user = users.find((el) => match.params.id === el.id);
-  return (
+const Utilisateur = () => {
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.userReducer.user);
+  const loadUser = useSelector((state) => state.userReducer.loadUser);
+  return user ? (
     <div>
       <div className="container emp-profile">
         <form method="post">
-          <div className="row" style={{marginTop : 25}}>
+          <div className="row" style={{ marginTop: 25 }}>
             <div className="col-md-4">
               <div className="profile-img">
-                <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt="avatar" />
+                <img
+                  src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
+                  alt="avatar"
+                />
               </div>
             </div>
             <div className="col-md-6">
               <div className="profile-head">
-                <h5>{user.nom}</h5>
+                <h5>{user.prenom}  {user.nom}</h5>
                 <h6>{user.role}</h6>
 
                 <ul className="nav nav-tabs" id="myTab" role="tablist">
-                  
-                    <a
-                      className="nav-link active"
-                      id="home-tab"
-                      data-toggle="tab"
-                      href="#home"
-                      role="tab"
-                      aria-controls="home"
-                      aria-selected="true"
-                    >
-                      About
-                    </a>
-                 
+                  <a
+                    className="nav-link active"
+                    id="home-tab"
+                    data-toggle="tab"
+                    href="#home"
+                    role="tab"
+                    aria-controls="home"
+                    aria-selected="true"
+                  >
+                    About
+                  </a>
                 </ul>
               </div>
             </div>
@@ -43,6 +46,7 @@ const Utilisateur = ({user}) => {
                 className="profile-edit-btn"
                 name="btnAddMore"
                 value="Edit Profile"
+                onClick= {dispatch(editUser())}
               />
             </div>
           </div>
@@ -110,7 +114,9 @@ const Utilisateur = ({user}) => {
         </form>
       </div>
     </div>
+  ) : (
+    loadUser
   );
-};
+  };
 
 export default Utilisateur;

@@ -41,10 +41,10 @@ router.get("/:id", controllers.getpubById );
 
 //@method GET
 //@desc GET SEARSHED PUB 
-// @PATH  http://localhost:5000/:searched
+// @PATH  http://localhost:5000/name/:a?
 // @Params  
 // get searshed pub
-router.get("/:searched ", controllers.getsearchPub );
+router.get("/?searched=:searched", controllers.getAllPub);
 
 //@method DELETE
 //@desc DELETE PUB 
