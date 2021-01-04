@@ -22,12 +22,12 @@ function App() {
   const loadUser = useSelector((state) => state.userReducer.loadUser);
   const pubs = useSelector((state) => state.pubReducer.pubs);
   const loadpub = useSelector((state) => state.pubReducer.loadpub);
-  const searched = useSelector((state) => state.pubReducer.searched);
+  // const searched = useSelector((state) => state.pubReducer.searched);
   useEffect(() => {
     dispatch(current());
-    dispatch(getpubs());
+    // dispatch(getpubs());
     // dispatch(filterPub());
-  }, [searched]);
+  }, []);
   const dispatch = useDispatch();
 
   return (

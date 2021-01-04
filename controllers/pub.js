@@ -33,14 +33,14 @@ exports.pub = async (req, res) => {
 exports.getpubs = async (req, res) => {
   searched = req.query.searched
     ? {
-        titre: {
+        name: {
           $regex: req.query.searched ,
           $options: "i",
         },
       }
     : {}
   try {
-    let result = await Pub.find({ ...searched });
+    let result = await Pub.find();
     res
       .status(200)
       .send({ response: result, message: "Getting pubs successfully" });
@@ -65,9 +65,9 @@ exports.getpubById = async (req, res) => {
 };
 
 // Get searshed pub
-// exports.getAllPub = async (req, res) => { let s = req.query.a;  let newName = new RegExp(s, "i");
-//  console.log({ s, newName });
-//  try {    if (s) {      let result = await Pub.find({        nom: newName,      });
+// exports.getAllPub = async (req, res) => { let s = req.query.a;  let newTitre = new RegExp(s, "i");
+//  console.log({ s, newTitre });
+//  try {    if (s) {      let result = await Pub.find({        titre: newTitre,      });
 //   res.status(200)({ message: "all pubs", result });      return;    }
 //   let result = await Pub.find();
 //    res.status(200)({ message: "all Pubs", result });  }

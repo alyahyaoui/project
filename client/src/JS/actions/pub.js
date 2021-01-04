@@ -33,7 +33,7 @@ export const getpubById = (id) => async (dispatch) => {
   }
 };
 
-export const getpubs = (searched='') => async (dispatch) => {
+export const getpubs = (searched = '') => async (dispatch) => {
   dispatch({ type: LOAD_PUB });
 
   try {
@@ -44,9 +44,9 @@ export const getpubs = (searched='') => async (dispatch) => {
   }
 };
 
-// export const filterPub = (nom) => async (dispatch) => {
+// export const filterPub = (titre) => async (dispatch) => {
 //   try {
-//     let result = await axios.get("/nom/:a?", nom);
+//     let result = await axios.get("/titre/:a?", titre);
 //     dispatch({ type: FILTER_PUB, payload: result.data.response });
 //   } catch (e) {
 //     dispatch({ type: FAIL_PUB, payload: e.message });

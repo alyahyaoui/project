@@ -1,8 +1,11 @@
 import React from "react";
 import {useState} from "react"
+import {useDispatch} from "react-redux"
+import {getpubs} from "../JS/actions/pub"
 import { Button, FormControl, Form } from "react-bootstrap";
 const SearchBox = ({ history }) => {
   const [searched, setSearched] = useState("");
+const dispatch = useDispatch()
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -12,7 +15,7 @@ const SearchBox = ({ history }) => {
       history.push("/");
     }
   };
-  console.log(searched);
+
   return (
     <div>
       <Form inline onSubmit={submitHandler}>
@@ -23,7 +26,8 @@ const SearchBox = ({ history }) => {
           onChange={(e) => setSearched(e.target.value)}
           className=" mr-sm-2 ml-sm-5"
         />
-        <Button type="submit" className="button">
+        <Button type="submit" className="button" onClick={() =>
+                        dispatch(getpubs({searched},history))} >
           click
         </Button>
       </Form>

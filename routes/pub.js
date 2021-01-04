@@ -30,7 +30,7 @@ router.post("/register", pubRules() , validation, controllers.pub);
 //@desc GET ALL PUB 
 // @PATH  http://localhost:5000/pub
 // get all pubs
-router.get("/", controllers.getpubs );
+router.get("/search/:searched", controllers.getpubs );
 
 //@method GET
 //@desc GET PUB BY ID
@@ -44,7 +44,7 @@ router.get("/:id", controllers.getpubById );
 // @PATH  http://localhost:5000/name/:a?
 // @Params  
 // get searshed pub
-router.get("/?searched=:searched", controllers.getAllPub);
+// router.get("/titre/:a?", controllers.getAllPub);
 
 //@method DELETE
 //@desc DELETE PUB 
